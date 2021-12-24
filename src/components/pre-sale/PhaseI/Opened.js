@@ -17,8 +17,8 @@ import Divider from '@mui/material/Divider';
 import moment from 'moment';
 
 const PresaleContractAddress = [
-  "0x448781811b915fD9A32D93244eE80A7a457EEd61",
-  "0xcceAEB37ff60D83041b7c9f7E4F11f17Ca3F4e95"
+  "0x170257a4AEDc27404b3deE84791840cb3540eBCa",
+  "0xa5EcD9e6De9b6Bd70EB66A96cC3854a91D068aE3"
 ];
 
 // 0: ropsten, 1: bsc testnet
