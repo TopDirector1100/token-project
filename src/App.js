@@ -16,13 +16,22 @@ import Presale from "containers/pre-sale";
 import Mint from "containers/mint";
 import Stake from "containers/stake";
 
+import { useWeb3React } from '@web3-react/core';
+
 const App = () => {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
+  const { library, account } = useWeb3React()
+
+  const connectorId = window.localStorage.getItem("connectorIdv2");
+
+  // console.log("connector id", window);
 
   useEffect(() => {
-    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated, isWeb3Enabled]);
+    if(!library)
+      return;
+      window.localStorage.setItem("connected", true)
+      console.log("wallet", window)
+  }, [library, account]);
 
   return (
     <BrowserRouter>

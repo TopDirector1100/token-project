@@ -16,6 +16,7 @@ const mainLinks = [
   { label: "Home", href: "/" },
   // { label: "Swap", href: "/swap" },
   { label: "Gallery", href: "/gallery" },
+  { label: "Staking", href: "/stake" },
 ]
 
 const presaleLink = { 
@@ -28,7 +29,8 @@ const bridgeLink = {
   href: "https://bridge.poly.network/token/AXL"
 }
 
-const comingSoonLink = ["Swap", "Mint", "Stake"];
+//const comingSoonLink = ["Swap", "Mint", "Stake"];
+const comingSoonLink = ["Swap", "Mint"];
 
 const moreMenuLinks = [
   // { label: "Transactions", href: "/transactions" },

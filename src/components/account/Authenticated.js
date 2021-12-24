@@ -9,7 +9,8 @@ import { ethers } from "ethers";
 const Authenticated = () => {
   const { library, account } = useWeb3React()
   const [balance, setBalance] = useState();
-  const { walletAddress, chainId } = useMoralisDapp();
+  // const { walletAddress, chainId } = useMoralisDapp();
+  const [chainId, setChainId] = useState(0);
   const [accountDetailsDialogOpen, setAccountDetailsDialogOpen] = useState(false);
 
   const getBalance = async () => {
@@ -22,6 +23,12 @@ const Authenticated = () => {
       getBalance()
     }
 
+    if(!library.provider) {
+      return
+    }
+
+    setChainId(library.provider.chainId);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [library, account])
 
@@ -32,14 +39,14 @@ const Authenticated = () => {
   return (
     <Fragment>
       <Chip
-        label={getEllipsisTxt(walletAddress, 6)} 
+        label={getEllipsisTxt(account, 6)} 
         onClick={handleAccountDetailsDialogToggle} 
         sx={{fontWeight: 500}}
       />
       <AccountDetails 
         accountDetailsDialogOpen={accountDetailsDialogOpen}
         handleAccountDetailsDialogToggle={handleAccountDetailsDialogToggle}
-        data={{balance, walletAddress, chainId}}
+        data={{balance, account, chainId}}
       />
     </Fragment>
   );

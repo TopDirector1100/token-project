@@ -20,6 +20,8 @@ const AccountDetails = ({accountDetailsDialogOpen, handleAccountDetailsDialogTog
 
   const handleLogout = () => {
     logoutWalletConnector();
+    window.localStorage.removeItem("wallet")
+    window.localStorage.removeItem("connected")
     handleAccountDetailsDialogToggle();
   }
 
@@ -53,17 +55,17 @@ const AccountDetails = ({accountDetailsDialogOpen, handleAccountDetailsDialogTog
               Address
             </Typography>
             <Link 
-              href={`${getExplorer(data.chainId)}/address/${data.walletAddress}`} 
+              href={`${getExplorer(data.chainId)}/address/${data.account}`} 
               underline="none" 
               target="_blank" 
               rel="noreferrer"
               sx={{fontWeight: 500}}
             >
-              {getEllipsisTxt(data.walletAddress, 6)}
+              {getEllipsisTxt(data.account, 6)}
             </Link>
           </Box>
           <Box sx={{alignSelf: 'end'}}>
-            <CopyToClipboard text={data.walletAddress} />
+            <CopyToClipboard text={data.account} />
           </Box>
         </Stack>
         <Box>

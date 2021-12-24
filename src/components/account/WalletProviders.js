@@ -24,6 +24,7 @@ const WalletProviders = ({walletProvidersDialogOpen, handleWalletProvidersDialog
   const { loginMetamask, loginWalletConnect} = useWalletConnector();
 
   useEffect(() => {
+    // console.log("library", library)
     if (library) {
       handleWalletProvidersDialogToggle()
     }
@@ -31,18 +32,30 @@ const WalletProviders = ({walletProvidersDialogOpen, handleWalletProvidersDialog
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [library, account])
 
+  // console.log("test", window)
+
+  useEffect(() => {
+    if(window.localStorage.getItem("connected")) {
+      connectWallet(window.localStorage.getItem("wallet"))
+    }
+  })
+
   const connectWallet = async (walletprovider) => {
     if(walletprovider === "injected_eth") {
       setNet(0);
+      window.localStorage.setItem("wallet", "injected_eth");
       loginMetamask();
     } else if(walletprovider === "walletconnect_eth") {
+      window.localStorage.setItem("wallet", "walletconnect_eth");
       setNet(0);
       loginWalletConnect();
     } else if(walletprovider === "injected_bsc") {
       setNet(1);
+      window.localStorage.setItem("wallet", "walletconnect_eth");
       loginMetamask();
     } else if(walletprovider === "walletconnect_bsc") {
       setNet(1);
+      window.localStorage.setItem("wallet", "walletconnect_bsc");
       loginWalletConnect();
     }
   }
